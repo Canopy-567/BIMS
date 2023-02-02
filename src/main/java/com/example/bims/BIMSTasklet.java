@@ -77,7 +77,7 @@ public class BIMSTasklet implements Tasklet {
     }
 
     private void checkAndAllotSlot(ArrayList<Integer> fastestDistanceList, Applicants applicants, List<Pair<Double, Double>> officesList) {
-        // check slots for specific office if avaible allot and save in db
+        // check slots for specific office if available allot and save in db
         // check next one,
         // check next one,
         // no slots available, mark them for next day
