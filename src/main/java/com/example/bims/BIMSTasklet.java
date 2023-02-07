@@ -12,15 +12,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Slf4j
 public class BIMSTasklet implements Tasklet {
-    @Autowired
-    RestTemplate restTemplate;
-
     @Autowired
     OfficeRepository officeRepository;
 
@@ -29,8 +28,10 @@ public class BIMSTasklet implements Tasklet {
 
     @Override
     public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+        RestTemplate restTemplate = new RestTemplate();
+
         List<Office> offices = officeRepository.findAll();
-        Set<Applicants> applicants = applicantsRepository.findByPriority_DateBetween(LocalDate.now().atStartOfDay(), LocalDate.now().plusDays(7).atStartOfDay());
+        Set<Applicants> applicants = applicantsRepository.findByPriority_DateBetween(LocalDate.now().atStartOfDay().format(DateTimeFormatter.ISO_DATE), LocalDate.now().plusDays(7).atStartOfDay().format(DateTimeFormatter.ISO_DATE));
         List<org.apache.commons.lang3.tuple.Pair<Double, Double>> officesList = new ArrayList<>();
 
         for(Office office: offices){

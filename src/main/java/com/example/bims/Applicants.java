@@ -1,12 +1,10 @@
 package com.example.bims;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import javax.persistence.*;
+
 import lombok.experimental.Accessors;
 
 import java.sql.Date;
@@ -21,8 +19,13 @@ import java.sql.Date;
 public class Applicants {
     private static final long serialVersionUID = -321234690742300L;
 
-    @Id
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "passport", nullable = false)
     private String passport;
+
     private Date priority_date;
     private Date DOB;
     private String Title;

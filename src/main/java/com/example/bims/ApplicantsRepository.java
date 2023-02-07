@@ -13,5 +13,5 @@ import java.util.Set;
 public interface ApplicantsRepository extends JpaRepository<Applicants, Long> {
 
     @Query("from Applicants a where a.priority_date between ?1 and ?2")
-    Set<Applicants> findByPriority_DateBetween(LocalDateTime from, LocalDateTime to);
+    Set<Applicants> findByPriority_DateBetween(String from, String to);
 }
