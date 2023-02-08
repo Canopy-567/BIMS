@@ -8,8 +8,6 @@ class BimsApplicationTests {
 
 	@Test
 	void contextLoads() {
-
-
 	}
 
 }
