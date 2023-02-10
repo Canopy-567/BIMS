@@ -31,7 +31,7 @@ public class BIMSTasklet implements Tasklet {
         RestTemplate restTemplate = new RestTemplate();
 
         List<Office> offices = officeRepository.findAll();
-        Set<Applicants> applicants = applicantsRepository.findByPriority_DateBetween(LocalDate.now().atStartOfDay().format(DateTimeFormatter.ISO_DATE), LocalDate.now().plusDays(7).atStartOfDay().format(DateTimeFormatter.ISO_DATE));
+        Set<Applicants> applicants = applicantsRepository.findByPriority_DateBetween("2022=02-09", "2022=02-16");
         List<org.apache.commons.lang3.tuple.Pair<Double, Double>> officesList = new ArrayList<>();
 
         for(Office office: offices){
