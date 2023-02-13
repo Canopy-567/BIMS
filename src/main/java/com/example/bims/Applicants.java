@@ -1,13 +1,10 @@
 package com.example.bims;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.*;
-
 import lombok.experimental.Accessors;
 
-import java.sql.Date;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="applicants")

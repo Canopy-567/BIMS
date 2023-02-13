@@ -11,9 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +30,8 @@ public class BIMSTasklet implements Tasklet {
         RestTemplate restTemplate = new RestTemplate();
 
         List<Office> offices = officeRepository.findAll();
-        Set<Applicants> applicants = applicantsRepository.findByPriority_DateBetween("2022-02-09", "2022-02-16");
+        DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+        Set<Applicants> applicants = applicantsRepository.findByPriority_DateBetween(formatter.parse("2022-02-09"), formatter.parse("2022-02-16"));
         List<org.apache.commons.lang3.tuple.Pair<Double, Double>> officesList = new ArrayList<>();
 
         for(Office office: offices){
