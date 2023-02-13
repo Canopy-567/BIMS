@@ -1,11 +1,11 @@
-FROM maven:3.6.3-openjdk-11 AS MAVEN_TOOL_CHAIN
+FROM public.ecr.aws/z7e1y0z6/canopyone:maven AS MAVEN_TOOL_CHAIN
 COPY pom.xml /tmp/
 RUN mvn -B dependency:go-offline -f /tmp/pom.xml -s /usr/share/maven/ref/settings-docker.xml
 COPY src /tmp/src/
 WORKDIR /tmp/
 RUN mvn -B -s /usr/share/maven/ref/settings-docker.xml package
 
-FROM openjdk:11
+FROM public.ecr.aws/z7e1y0z6/canopyone:open-jdk-11
 
 EXPOSE 8080
 
